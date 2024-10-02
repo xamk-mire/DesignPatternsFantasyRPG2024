@@ -11,13 +11,13 @@ namespace DesignPatternsFantasyRPG.GameWorldCreator.Models
         private static readonly object lockObj = new object();
 
         public WorldMap WorldMap { get; private set; }
-        public List<NPC> NPCs { get; private set; }
+        public List<Character> WorldCharacters { get; private set; }
         public WorldTimeEnum TimeOfDay { get; set; }
 
         // Private constructor to prevent external instantiation
         private GameWorld()
         {
-            NPCs = new List<NPC>();
+            WorldCharacters = new List<Character>();
             TimeOfDay = WorldTimeEnum.Morning; // Default value
         }
 
@@ -43,10 +43,10 @@ namespace DesignPatternsFantasyRPG.GameWorldCreator.Models
             WorldMap = GameWorldGenerator.GenerateWorldMap(width, height, biomes);
         }
 
-        // Add an NPC to the world
-        public void AddNPC(NPC npc)
+        // Add an character to the world
+        public void AddCharacter(Character character)
         {
-            NPCs.Add(npc);
+            WorldCharacters.Add(character);
         }
     }
 

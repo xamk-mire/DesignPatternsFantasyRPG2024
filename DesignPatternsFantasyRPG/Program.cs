@@ -30,25 +30,21 @@ namespace DesignPatternsFantasyRPG
             CharacterFactory mageFactory = new MageFactory();
             CharacterFactory archerFactory = new ArcherFactory();
 
-            Character warrior = warriorFactory.CreateCharacter("Conan");
-            Character mage = mageFactory.CreateCharacter("Merlin");
-            Character archer = archerFactory.CreateCharacter("Legolas");
-
             // Display character information
-            // TODO: Could add a list of PlayerCharacters to GameWorld, and loop the list instead
-            //       e.g. NPC implementation
-            warrior.DisplayInfo();
-            mage.DisplayInfo();
-            archer.DisplayInfo();
+            gameWorld.AddCharacter(warriorFactory.CreateCharacter("Conan"));
+            gameWorld.AddCharacter(mageFactory.CreateCharacter("Merlin"));
+            gameWorld.AddCharacter(archerFactory.CreateCharacter("Legolas"));
 
             // Add NPCs to the game world
             // TODO: Extend NPC class -> Jobs, Skills, Inventory, Roles
-            gameWorld.AddNPC(new NPC("Villager"));
-            gameWorld.AddNPC(new NPC("Merchant"));
+            NpcFactory npcFactory = new NpcFactory();
 
-            foreach (var npc in gameWorld.NPCs)
+            gameWorld.AddCharacter(npcFactory.CreateCharacter("Villager"));
+            gameWorld.AddCharacter(npcFactory.CreateCharacter("Villager"));
+
+            foreach (var character in gameWorld.WorldCharacters)
             {
-                npc.DisplayInfo();
+                character.DisplayInfo();
             }
 
             // Print the generated map 
