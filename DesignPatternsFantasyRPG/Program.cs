@@ -2,6 +2,9 @@
 using DesignPatternsFantasyRPG.CharacterCreator;
 using DesignPatternsFantasyRPG.GameWorldCreator.Models;
 using DesignPatternsFantasyRPG.GameWorldCreator;
+using DesignPatternsFantasyRPG.ItemCreator;
+using DesignPatternsFantasyRPG.ItemCreator.Models;
+using System.Numerics;
 
 namespace DesignPatternsFantasyRPG
 {
@@ -46,6 +49,36 @@ namespace DesignPatternsFantasyRPG
             {
                 character.DisplayInfo();
             }
+
+            // Item creation examples
+            ItemFacotry commonItemFactory = new CommonItemFactory();
+
+            Weapon commonWeapon = commonItemFactory.CreateWeapon();
+
+            commonWeapon.DisplayInfo();
+
+            ItemFacotry legendaryItemFactory = new LegendaryItemFactory();
+
+            Weapon legendaryWeapon = legendaryItemFactory.CreateWeapon();
+
+            legendaryWeapon.DisplayInfo();
+
+
+            // Character actions
+            // Get conan the warrior
+            Character conan = gameWorld.WorldCharacters.First(character => character.Name == "Conan");
+
+            // Perform an action using the default melee attack
+            conan.PerformAction();
+
+            // Change to a magic action
+            conan.SetAction(new MagicAction());
+            conan.PerformAction();
+
+            // Perform a ranged attack
+            conan.SetAction(new RangedAction());
+            conan.PerformAction();
+
 
             // Print the generated map 
             GameWorldGenerator.PrintMap(gameWorld.WorldMap);
