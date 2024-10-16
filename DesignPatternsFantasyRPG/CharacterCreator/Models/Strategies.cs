@@ -13,35 +13,27 @@
         }
     }
 
-    public class MeleeAction : IActionStrategy
+    public class AttackAction : IActionStrategy
     {
         public void PerformAction(string characterName)
         {
-            Console.WriteLine($"{characterName} is performing melee attack!");
+            Console.WriteLine($"{characterName} is perfroming an attack!");
         }
     }
 
-    public class RangedAction : IActionStrategy
-    {
-        public void PerformAction(string characterName)
-        {
-            Console.WriteLine($"{characterName} is performing ranged attack!");
-        }
-    }
-
-    public class MagicAction : IActionStrategy
+    public class SpellAction : IActionStrategy
     {
         public void PerformAction(string characterName)
         {
             Console.WriteLine($"{characterName} is casting a magic spell!");
         }
-    }   
+    }
 
-    public class HealAction : IActionStrategy
+    public class ItemAction : IActionStrategy
     {
         public void PerformAction(string characterName)
         {
-            Console.WriteLine($"{characterName} is performing healing action!");
+            Console.WriteLine($"{characterName} is performing melee attack!");
         }
     }
 }

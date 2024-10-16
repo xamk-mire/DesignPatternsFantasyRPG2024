@@ -67,15 +67,16 @@ namespace DesignPatternsFantasyRPG
             // Get conan the warrior
             Character conan = gameWorld.WorldCharacters.First(character => character.Name == "Conan");
 
+            conan.PerformAction();
+
+            // Set conan state to action
+            conan.SetState(new ActionState(new AttackAction()));
+
             // Perform an action using the default melee attack
             conan.PerformAction();
 
-            // Change to a magic action
-            conan.SetAction(new MagicAction());
-            conan.PerformAction();
-
-            // Perform a ranged attack
-            conan.SetAction(new RangedAction());
+            // Set conant into defending state
+            conan.SetState(new DefendingState());
             conan.PerformAction();
 
 
