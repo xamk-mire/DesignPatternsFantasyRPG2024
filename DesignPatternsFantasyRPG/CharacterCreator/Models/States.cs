@@ -25,7 +25,7 @@
         public void HandleState(string characterName)
         {
             Console.WriteLine($"{characterName} is in action mode.");
-            _actionStrategy.PerformAction();
+            _actionStrategy.PerformAction(characterName);
         }
     }
 
