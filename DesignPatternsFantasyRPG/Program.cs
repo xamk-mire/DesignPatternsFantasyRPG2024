@@ -4,6 +4,7 @@ using DesignPatternsFantasyRPG.GameWorldCreator.Models;
 using DesignPatternsFantasyRPG.GameWorldCreator;
 using DesignPatternsFantasyRPG.ItemCreator;
 using DesignPatternsFantasyRPG.ItemCreator.Models;
+using DesignPatternsFantasyRPG.Quests;
 
 namespace DesignPatternsFantasyRPG
 {
@@ -50,6 +51,7 @@ namespace DesignPatternsFantasyRPG
             }
 
             // Item creation examples
+            /*
             ItemFacotry commonItemFactory = new CommonItemFactory();
 
             Weapon commonWeapon = commonItemFactory.CreateWeapon();
@@ -61,12 +63,13 @@ namespace DesignPatternsFantasyRPG
             Weapon legendaryWeapon = legendaryItemFactory.CreateWeapon();
 
             legendaryWeapon.DisplayInfo();
+            */
 
-
-            // Character actions
             // Get conan the warrior
             Character conan = gameWorld.WorldCharacters.First(character => character.Name == "Conan");
 
+            // Character actions
+            /*
             conan.PerformAction();
 
             // Set conan state to action
@@ -78,7 +81,32 @@ namespace DesignPatternsFantasyRPG
             // Set conant into defending state
             conan.SetState(new DefendingState());
             conan.PerformAction();
+            */
 
+            EnemyManager enemyManager = new EnemyManager();
+
+            Enemy slime = enemyManager.SpawnEnemy("Slime", 1);
+            slime.DisplayInfo();
+
+            Enemy goblin = enemyManager.SpawnEnemy("Goblin", 2);
+            goblin.DisplayInfo();
+
+            Enemy dragon = enemyManager.SpawnEnemy("Dragon", 5);
+            dragon.DisplayInfo();
+            dragon.PerformAction();
+            dragon.SetAction(new MovementAction());
+            dragon.PerformAction();
+
+
+            QuestManager questManager = new QuestManager();
+
+            questManager.RegisterObserver(conan);
+
+            // Quest started
+            questManager.UpdateQuestStatus("Quest started: Retrieve the lost artifact");
+
+            // Quest completed
+            questManager.UpdateQuestStatus("Quest completed: Artifact retrieved!");
 
             // Print the generated map 
             GameWorldGenerator.PrintMap(gameWorld.WorldMap);

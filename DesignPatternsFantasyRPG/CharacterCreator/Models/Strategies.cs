@@ -13,6 +13,14 @@
         }
     }
 
+    public class MovementAction : IActionStrategy
+    {
+        public void PerformAction(string characterName)
+        {
+            Console.WriteLine($"{characterName} is moving around");
+        }
+    }
+
     public class AttackAction : IActionStrategy
     {
         public void PerformAction(string characterName)
