@@ -1,4 +1,5 @@
-﻿using DesignPatternsFantasyRPG.Quests.Models;
+﻿using DesignPatternsFantasyRPG.ItemCreator.Models;
+using DesignPatternsFantasyRPG.Quests.Models;
 
 namespace DesignPatternsFantasyRPG.CharacterCreator.Models
 {
@@ -37,8 +38,11 @@ namespace DesignPatternsFantasyRPG.CharacterCreator.Models
 
         public void SetAction(IActionStrategy actionStrategy)
         {
-            _currentAction = actionStrategy;
-            _currentState = new ActionState(_currentAction);
+            // Check if the action can be changed
+            if (_currentState.CanUpdateAction(Name, actionStrategy))
+            {
+                _currentAction = actionStrategy;
+            }
         }
 
         public void SetState(ICharacterState newState)
@@ -48,7 +52,7 @@ namespace DesignPatternsFantasyRPG.CharacterCreator.Models
 
         public void PerformAction()
         {
-            _currentState.HandleState(Name);
+            _currentState.HandleState(Name, _currentAction);
         }
 
         public void Update(string questStatus)

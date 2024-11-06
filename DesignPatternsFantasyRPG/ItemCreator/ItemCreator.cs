@@ -13,7 +13,7 @@ namespace DesignPatternsFantasyRPG.ItemCreator
     {
         public override Weapon CreateWeapon()
         {
-            return new Weapon("Sword", "Basic sword", RarityEnum.Common, WeaponTypeEnum.Melee);
+            return new Weapon("Sword", "Basic sword", RarityEnum.Common, WeaponTypeEnum.Melee, 100);
         }
 
         public override Item CreatePotion()
@@ -31,7 +31,7 @@ namespace DesignPatternsFantasyRPG.ItemCreator
     {
         public override Weapon CreateWeapon()
         {
-            return new Weapon("Elfwood staff", "Magical staff", RarityEnum.Magic, WeaponTypeEnum.Ranged);
+            return new Weapon("Elfwood staff", "Magical staff", RarityEnum.Magic, WeaponTypeEnum.Ranged, 150);
         }
 
         public override Item CreatePotion()
@@ -49,7 +49,7 @@ namespace DesignPatternsFantasyRPG.ItemCreator
     {
         public override Weapon CreateWeapon()
         {
-            return new Weapon("Golden bow", "Rare bow", RarityEnum.Rare, WeaponTypeEnum.Ranged);
+            return new Weapon("Golden bow", "Rare bow", RarityEnum.Rare, WeaponTypeEnum.Ranged, 200);
         }
 
         public override Item CreatePotion()
@@ -67,7 +67,7 @@ namespace DesignPatternsFantasyRPG.ItemCreator
     {
         public override Weapon CreateWeapon()
         {
-            return new Weapon("Punching gloves of the northern star", "Legendary gloves", RarityEnum.Legendary, WeaponTypeEnum.Melee);
+            return new Weapon("Punching gloves of the northern star", "Legendary gloves", RarityEnum.Legendary, WeaponTypeEnum.Melee, 9001);
         }
 
         public override Item CreatePotion()

@@ -9,6 +9,9 @@
         public string Description { get; set; }
         public RarityEnum Rarity { get; set; }
         
+        // Generic value type for items, weapon = damage, Armor = defence points, Potion = heal amount
+        public int Value { get; set; }
+        
         public Item(string name, string description, RarityEnum rarity) {
             Id = nextId++;
             Name = name;
@@ -23,8 +26,9 @@
     {
         private WeaponTypeEnum WeaponType { get; set; }
 
-        public Weapon(string name, string description, RarityEnum rarity, WeaponTypeEnum type) : base(name, description, rarity) { 
+        public Weapon(string name, string description, RarityEnum rarity, WeaponTypeEnum type, int value) : base(name, description, rarity) { 
             WeaponType = type;
+            Value = value;
         }
 
         public override void DisplayInfo()

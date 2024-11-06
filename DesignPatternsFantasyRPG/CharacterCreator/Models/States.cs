@@ -2,38 +2,49 @@
 {
     public interface ICharacterState
     {
-        void HandleState(string characterName);
+        void HandleState(string characterName, IActionStrategy actionStrategy);
+
+        bool CanUpdateAction(string characterName, IActionStrategy actionStrategy);
     }
 
     public class IdleState : ICharacterState
     {
-        public void HandleState(string characterName)
+        public void HandleState(string characterName, IActionStrategy actionStrategy)
         {
             Console.WriteLine($"{characterName} is in idle state.");
+        }
+
+        public bool CanUpdateAction(string characterName, IActionStrategy actionStrategy)
+        {
+            return true;
         }
     }
 
     public class ActionState : ICharacterState
     {
-        private IActionStrategy _actionStrategy;
-
-        public ActionState(IActionStrategy actionStrategy)
-        {
-            _actionStrategy = actionStrategy;
-        }
-
-        public void HandleState(string characterName)
+        public void HandleState(string characterName, IActionStrategy actionStrategy)
         {
             Console.WriteLine($"{characterName} is in action mode.");
-            _actionStrategy.PerformAction(characterName);
+            actionStrategy.PerformAction(characterName);
+        }
+
+        public bool CanUpdateAction(string characterName, IActionStrategy actionStrategy)
+        {
+            return true;
         }
     }
 
     public class DefendingState : ICharacterState
     {
-        public void HandleState(string characterName)
+        public void HandleState(string characterName, IActionStrategy actionStrategy)
         {
             Console.WriteLine($"{characterName} is defending.");
+        }
+
+        public bool CanUpdateAction(string characterName, IActionStrategy actionStrategy)
+        {
+            Console.WriteLine($"{characterName} is currently in defeding state and cannot change it's action to {actionStrategy}.");
+            return false;
         }
     }
 }
