@@ -3,7 +3,7 @@
     // Character model for Warrior class
     public class Warrior : Character
     {
-        public Warrior(string name) : base(name, 150, 50, 100, 60) { }
+        public Warrior(string name, int health = 150, int mana = 50, int stregth = 100, int agility = 60) : base(name, health, mana, stregth, agility) { }
 
         public override void DisplayInfo()
         {
@@ -14,7 +14,7 @@
     // Character model for Mage class
     public class Mage : Character
     {
-        public Mage(string name) : base(name, 80, 200, 50, 40) { }
+        public Mage(string name, int health = 80, int mana = 200, int stregth = 50, int agility = 40) : base(name, health, mana, stregth, agility) { }
 
         public override void DisplayInfo()
         {
@@ -25,7 +25,7 @@
     // Character model for Archer class
     public class Archer : Character
     {
-        public Archer(string name) : base(name, 100, 75, 70, 90) { }
+        public Archer(string name, int health = 100, int mana = 75, int stregth = 70, int agility = 90) : base(name, health, mana, stregth, agility) { }
 
         public override void DisplayInfo()
         {
