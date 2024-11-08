@@ -2,11 +2,19 @@
 
 namespace DesignPatternsFantasyRPG.Quests
 {
-    public class QuestManager : ISubject
+    public class QuestManager  //: ISubject
     {
-        private List<IObserver> _observers = new List<IObserver>();
-        private string _questStatus;
+        private List<Quest> _quests = new List<Quest>();
 
+        public void CreateNewQuest(string questTitle, List<IObserver> characters)
+        {
+            var quest = new Quest(questTitle, characters);
+            _quests.Add(quest);
+        }
+
+        public List<Quest> GetQuests() { return _quests; }
+
+        /*
         public void RegisterObserver(IObserver observer)
         {
             _observers.Add(observer);
@@ -29,6 +37,6 @@ namespace DesignPatternsFantasyRPG.Quests
         {
             _questStatus = status;
             NotifyObservers(_questStatus);
-        }
+        }*/
     }
 }

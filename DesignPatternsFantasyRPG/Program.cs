@@ -100,6 +100,23 @@ namespace DesignPatternsFantasyRPG
 
             QuestManager questManager = new QuestManager();
 
+            QuestManager adventureQuest = new QuestManager();
+            QuestManager collectFlowersQuest = new QuestManager();
+
+
+            questManager.CreateNewQuest("Adventure quest", new List<IObserver> { conan });
+
+            var quests = questManager.GetQuests();
+
+            foreach (var quest in quests)
+            {
+                quest.UpdateQuestStatus("New quest status");
+                quest.QuestCompleted();
+            }
+
+
+            /*
+
             questManager.RegisterObserver(conan);
 
             // Quest started
