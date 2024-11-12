@@ -2,9 +2,7 @@
 using DesignPatternsFantasyRPG.CharacterCreator;
 using DesignPatternsFantasyRPG.GameWorldCreator.Models;
 using DesignPatternsFantasyRPG.GameWorldCreator;
-using DesignPatternsFantasyRPG.ItemCreator;
-using DesignPatternsFantasyRPG.ItemCreator.Models;
-using DesignPatternsFantasyRPG.Quests;
+using DesignPatternsFantasyRPG.CommandHandler;
 
 namespace DesignPatternsFantasyRPG
 {
@@ -97,7 +95,7 @@ namespace DesignPatternsFantasyRPG
             dragon.SetAction(new MovementAction());
             dragon.PerformAction();
 
-
+            /*
             QuestManager questManager = new QuestManager();
 
             questManager.RegisterObserver(conan);
@@ -107,9 +105,33 @@ namespace DesignPatternsFantasyRPG
 
             // Quest completed
             questManager.UpdateQuestStatus("Quest completed: Artifact retrieved!");
+            */
+
 
             // Print the generated map 
             GameWorldGenerator.PrintMap(gameWorld.WorldMap);
+
+
+            // Initialize gamecontroller
+            GameController controller = new GameController(conan, slime);
+
+            Console.WriteLine("Press 'A' to Attack, 'D' to Defend, 'H' to Heal. Press 'Q' to quit.");
+
+            while (true)
+            {
+                // Capture keyboard input
+                ConsoleKey key = Console.ReadKey(intercept: true).Key;
+
+                if (key == ConsoleKey.Q)
+                {
+                    Console.WriteLine("Exiting game...");
+                    break;
+                }
+
+                // Handle the input using the controller
+                controller.HandleInput(key);
+            }
+
         }
     }
 }

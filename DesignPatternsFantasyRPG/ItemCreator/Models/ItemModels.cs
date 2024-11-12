@@ -8,6 +8,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public RarityEnum Rarity { get; set; }
+        public int Value { get; set; }
         
         public Item(string name, string description, RarityEnum rarity) {
             Id = nextId++;
@@ -23,8 +24,9 @@
     {
         private WeaponTypeEnum WeaponType { get; set; }
 
-        public Weapon(string name, string description, RarityEnum rarity, WeaponTypeEnum type) : base(name, description, rarity) { 
+        public Weapon(string name, string description, RarityEnum rarity, WeaponTypeEnum type, int value) : base(name, description, rarity) { 
             WeaponType = type;
+            Value = value;
         }
 
         public override void DisplayInfo()
@@ -35,7 +37,10 @@
 
     public class Potion : Item
     {
-        public Potion(string name, string description, RarityEnum rarity) : base(name, description, rarity) { }
+        public Potion(string name, string description, RarityEnum rarity, int value) : base(name, description, rarity) 
+        {
+            Value = value;
+        }
 
         public override void DisplayInfo()
         {
@@ -45,7 +50,10 @@
 
     public class Armor : Item
     {
-        public Armor(string name, string description, RarityEnum rarity) : base(name, description, rarity) { }
+        public Armor(string name, string description, RarityEnum rarity, int value) : base(name, description, rarity) 
+        {
+            Value = value;
+        }
 
         public override void DisplayInfo()
         {
