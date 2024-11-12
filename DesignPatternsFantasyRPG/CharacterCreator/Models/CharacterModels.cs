@@ -1,4 +1,4 @@
-﻿using DesignPatternsFantasyRPG.Enums;
+﻿using DesignPatternsFantasyRPG.ItemCreator.Models;
 using DesignPatternsFantasyRPG.Quests.Models;
 
 namespace DesignPatternsFantasyRPG.CharacterCreator.Models
@@ -12,15 +12,8 @@ namespace DesignPatternsFantasyRPG.CharacterCreator.Models
         public int Strength { get; set; }
         public int Agility { get; set; }
 
-        public CharacterTypeEnum CharacterType { get; set; }
-
         private ICharacterState _currentState;
         private IActionStrategy _currentAction;
-
-        protected Character()
-        {
-            // Parameterless constructor for EF Core
-        }
 
         protected Character(string name, int health, int mana, int strength, int agility)
         {
@@ -40,8 +33,11 @@ namespace DesignPatternsFantasyRPG.CharacterCreator.Models
 
         public void SetAction(IActionStrategy actionStrategy)
         {
-            _currentAction = actionStrategy;
-            _currentState = new ActionState(_currentAction);
+            // Check if the action can be changed
+            if (_currentState.CanUpdateAction(Name, actionStrategy))
+            {
+                _currentAction = actionStrategy;
+            }
         }
 
         public void SetState(ICharacterState newState)
@@ -51,7 +47,7 @@ namespace DesignPatternsFantasyRPG.CharacterCreator.Models
 
         public void PerformAction()
         {
-            _currentState.HandleState(Name);
+            _currentState.HandleState(Name, _currentAction);
         }
 
         public void Update(string questStatus)
