@@ -1,6 +1,4 @@
-﻿using DesignPatternsFantasyRPG.CharacterCreator.Models;
-
-namespace DesignPatternsFantasyRPG.CommandHandler.Models
+﻿namespace DesignPatternsFantasyRPG.CommandHandler.Models
 {
     public interface ICommand
     {

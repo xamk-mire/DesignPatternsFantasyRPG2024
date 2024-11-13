@@ -12,6 +12,7 @@
         public void HandleState(string characterName, IActionStrategy actionStrategy)
         {
             Console.WriteLine($"{characterName} is in idle state.");
+            actionStrategy.PerformAction(characterName);
         }
 
         public bool CanUpdateAction(string characterName, IActionStrategy actionStrategy)

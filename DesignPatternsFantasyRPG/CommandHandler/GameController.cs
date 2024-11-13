@@ -14,6 +14,7 @@ namespace DesignPatternsFantasyRPG.CommandHandler
             _keyMappings[ConsoleKey.D] = new DefendCommand(character);
             _keyMappings[ConsoleKey.H] = new HealCommand(character, 20);
             _keyMappings[ConsoleKey.M] = new MoveCommand(character);
+            _keyMappings[ConsoleKey.S] = new ChangeStateCommand(character); 
         }
 
         public void HandleInput(ConsoleKey key)

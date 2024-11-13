@@ -3,6 +3,7 @@ using DesignPatternsFantasyRPG.CharacterCreator;
 using DesignPatternsFantasyRPG.GameWorldCreator.Models;
 using DesignPatternsFantasyRPG.GameWorldCreator;
 using DesignPatternsFantasyRPG.CommandHandler;
+using DesignPatternsFantasyRPG.CommandHandler.Models;
 
 namespace DesignPatternsFantasyRPG
 {
@@ -115,7 +116,14 @@ namespace DesignPatternsFantasyRPG
             // Initialize gamecontroller
             GameController controller = new GameController(conan, slime);
 
-            Console.WriteLine("Press 'A' to Attack, 'D' to Defend, 'H' to Heal. Press 'Q' to quit.");
+            Console.WriteLine("Press 'A' to Attack, 'D' to Defend, 'H' to Heal, 'M' to Move, 'S' to change state. Press 'Q' to quit.");
+
+            
+            // Example how to define custom key mappings
+            /*
+            var x = Console.ReadKey();
+            controller.SetKeyMapping(x.Key, new MoveCommand(conan));
+            */
 
             while (true)
             {
