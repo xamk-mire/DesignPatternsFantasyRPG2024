@@ -3,7 +3,8 @@ using DesignPatternsFantasyRPG.CharacterCreator;
 using DesignPatternsFantasyRPG.GameWorldCreator.Models;
 using DesignPatternsFantasyRPG.GameWorldCreator;
 using DesignPatternsFantasyRPG.CommandHandler;
-using DesignPatternsFantasyRPG.CommandHandler.Models;
+using DesignPatternsFantasyRPG.ItemCreator;
+using DesignPatternsFantasyRPG.ItemCreator.Models;
 
 namespace DesignPatternsFantasyRPG
 {
@@ -50,9 +51,8 @@ namespace DesignPatternsFantasyRPG
             }
 
             // Item creation examples
-            /*
             ItemFacotry commonItemFactory = new CommonItemFactory();
-
+            /*
             Weapon commonWeapon = commonItemFactory.CreateWeapon();
 
             commonWeapon.DisplayInfo();
@@ -64,8 +64,29 @@ namespace DesignPatternsFantasyRPG
             legendaryWeapon.DisplayInfo();
             */
 
+            Weapon commonWeapon = commonItemFactory.CreateWeapon();
+            DefensiveItem commonArmor = commonItemFactory.CreateDefensiveItem();
+            UtilityItem commonPotion = commonItemFactory.CreateUtilityItem();
+
+
             // Get conan the warrior
             Character conan = gameWorld.WorldCharacters.First(character => character.Name == "Conan");
+
+            // Add items to character's inventory
+            conan.Inventory.AddItem(commonWeapon);
+            conan.Inventory.AddItem(commonArmor);
+            conan.Inventory.AddItem(commonPotion);
+
+            // List inventory items
+            conan.Inventory.ListItems();
+
+            // Equip items
+            conan.EquipItem(commonWeapon);
+            conan.EquipItem(commonArmor);
+            conan.EquipItem(commonPotion);
+
+            // Show currently equipped items
+            conan.ShowEquipment();
 
             // Character actions
             /*
@@ -82,11 +103,12 @@ namespace DesignPatternsFantasyRPG
             conan.PerformAction();
             */
 
+            // Enemy creation
             EnemyManager enemyManager = new EnemyManager();
 
             Enemy slime = enemyManager.SpawnEnemy("Slime", 1);
             slime.DisplayInfo();
-
+            /*
             Enemy goblin = enemyManager.SpawnEnemy("Goblin", 2);
             goblin.DisplayInfo();
 
@@ -95,7 +117,7 @@ namespace DesignPatternsFantasyRPG
             dragon.PerformAction();
             dragon.SetAction(new MovementAction());
             dragon.PerformAction();
-
+            */
             /*
             QuestManager questManager = new QuestManager();
 

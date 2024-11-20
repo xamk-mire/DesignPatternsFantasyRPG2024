@@ -5,8 +5,8 @@ namespace DesignPatternsFantasyRPG.ItemCreator
     public abstract class ItemFacotry
     {
         public abstract Weapon CreateWeapon();
-        public abstract Item CreatePotion();
-        public abstract Item CreateArmor();
+        public abstract UtilityItem CreateUtilityItem();
+        public abstract DefensiveItem CreateDefensiveItem();
     }
 
     public class CommonItemFactory : ItemFacotry
@@ -16,14 +16,14 @@ namespace DesignPatternsFantasyRPG.ItemCreator
             return new Weapon("Sword", "Basic sword", RarityEnum.Common, WeaponTypeEnum.Melee, 100);
         }
 
-        public override Item CreatePotion()
+        public override UtilityItem CreateUtilityItem()
         {
-            throw new NotImplementedException();
+            return new UtilityItem("Healing potion", "Basic healing potion", RarityEnum.Common, 20);
         }
 
-        public override Item CreateArmor()
+        public override DefensiveItem CreateDefensiveItem()
         {
-            throw new NotImplementedException();
+            return new DefensiveItem("Body armor", "Leather armor", RarityEnum.Common, 50);
         }
     }
 
@@ -34,12 +34,12 @@ namespace DesignPatternsFantasyRPG.ItemCreator
             return new Weapon("Elfwood staff", "Magical staff", RarityEnum.Magic, WeaponTypeEnum.Ranged, 150);
         }
 
-        public override Item CreatePotion()
+        public override UtilityItem CreateUtilityItem()
         {
             throw new NotImplementedException();
         }
 
-        public override Item CreateArmor()
+        public override DefensiveItem CreateDefensiveItem()
         {
             throw new NotImplementedException();
         }
@@ -52,12 +52,12 @@ namespace DesignPatternsFantasyRPG.ItemCreator
             return new Weapon("Golden bow", "Rare bow", RarityEnum.Rare, WeaponTypeEnum.Ranged, 200);
         }
 
-        public override Item CreatePotion()
+        public override UtilityItem CreateUtilityItem()
         {
             throw new NotImplementedException();
         }
 
-        public override Item CreateArmor()
+        public override DefensiveItem CreateDefensiveItem()
         {
             throw new NotImplementedException();
         }
@@ -70,12 +70,12 @@ namespace DesignPatternsFantasyRPG.ItemCreator
             return new Weapon("Punching gloves of the northern star", "Legendary gloves", RarityEnum.Legendary, WeaponTypeEnum.Melee, 9001);
         }
 
-        public override Item CreatePotion()
+        public override UtilityItem CreateUtilityItem()
         {
             throw new NotImplementedException();
         }
 
-        public override Item CreateArmor()
+        public override DefensiveItem CreateDefensiveItem()
         {
             throw new NotImplementedException();
         }

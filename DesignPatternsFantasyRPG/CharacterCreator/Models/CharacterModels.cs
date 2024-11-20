@@ -1,4 +1,5 @@
-﻿using DesignPatternsFantasyRPG.Quests.Models;
+﻿using DesignPatternsFantasyRPG.ItemCreator.Models;
+using DesignPatternsFantasyRPG.Quests.Models;
 
 namespace DesignPatternsFantasyRPG.CharacterCreator.Models
 {
@@ -14,6 +15,11 @@ namespace DesignPatternsFantasyRPG.CharacterCreator.Models
         public int Mana { get; set; }
         public int Strength { get; set; }
         public int Agility { get; set; }
+        public Inventory Inventory { get; }
+
+        private Item? _weaponSlot;
+        private Item? _defensiveSlot;
+        private Item? _utilitySlot;
 
         private ICharacterState _currentState;
         private IActionStrategy _currentAction;
@@ -26,6 +32,7 @@ namespace DesignPatternsFantasyRPG.CharacterCreator.Models
             Mana = mana;
             Strength = strength;
             Agility = agility;
+            Inventory = new Inventory();
 
             // Default state and action
             _currentState = new IdleState();
@@ -57,6 +64,78 @@ namespace DesignPatternsFantasyRPG.CharacterCreator.Models
         public void Update(string questStatus)
         {
             Console.WriteLine($"{Name} received quest update: {questStatus}");
+        }
+
+        public void EquipItem(Item item)
+        {
+            if (!Inventory.Contains(item))
+            {
+                Console.WriteLine($"{item.Name} is not in the inventory.");
+                return;
+            }
+
+            switch (item.ItemType)
+            {
+                case ItemTypeEnum.Weapon:
+                    _weaponSlot = item;
+                    Console.WriteLine($"{item.Name} equipped in weapon slot.");
+                    break;
+                case ItemTypeEnum.Defensive:
+                    _defensiveSlot = item;
+                    Console.WriteLine($"{item.Name} equipped in defensive slot.");
+                    break;
+                case ItemTypeEnum.Utility:
+                    _utilitySlot = item;
+                    Console.WriteLine($"{item.Name} equipped in utility slot.");
+                    break;
+                default:
+                    Console.WriteLine("Invalid item type for equipment.");
+                    break;
+            }
+
+            Inventory.RemoveItem(item);
+        }
+
+        public void UnequipItem(ItemTypeEnum slotType)
+        {
+            switch (slotType)
+            {
+                case ItemTypeEnum.Weapon:
+                    if (_weaponSlot != null)
+                    {
+                        Inventory.AddItem(_weaponSlot);
+                        Console.WriteLine($"{_weaponSlot.Name} unequipped from weapon slot.");
+                        _weaponSlot = null;
+                    }
+                    break;
+                case ItemTypeEnum.Defensive:
+                    if (_defensiveSlot != null)
+                    {
+                        Inventory.AddItem(_defensiveSlot);
+                        Console.WriteLine($"{_defensiveSlot.Name} unequipped from defensive slot.");
+                        _defensiveSlot = null;
+                    }
+                    break;
+                case ItemTypeEnum.Utility:
+                    if (_utilitySlot != null)
+                    {
+                        Inventory.AddItem(_utilitySlot);
+                        Console.WriteLine($"{_utilitySlot.Name} unequipped from utility slot.");
+                        _utilitySlot = null;
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid equipment slot type.");
+                    break;
+            }
+        }
+
+        public void ShowEquipment()
+        {
+            Console.WriteLine($"{Name}'s Equipment:");
+            Console.WriteLine($"- Weapon Slot: {_weaponSlot?.Name ?? "Empty"}");
+            Console.WriteLine($"- Defensive Slot: {_defensiveSlot?.Name ?? "Empty"}");
+            Console.WriteLine($"- Utility Slot: {_utilitySlot?.Name ?? "Empty"}");
         }
     }
 }

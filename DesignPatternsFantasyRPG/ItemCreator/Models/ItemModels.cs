@@ -9,6 +9,8 @@
         public string Description { get; set; }
         public RarityEnum Rarity { get; set; }
         public int Value { get; set; }
+
+        public ItemTypeEnum ItemType { get; set; }
         
         public Item(string name, string description, RarityEnum rarity) {
             Id = nextId++;
@@ -27,6 +29,7 @@
         public Weapon(string name, string description, RarityEnum rarity, WeaponTypeEnum type, int value) : base(name, description, rarity) { 
             WeaponType = type;
             Value = value;
+            ItemType = ItemTypeEnum.Weapon;
         }
 
         public override void DisplayInfo()
@@ -35,29 +38,31 @@
         }
     }
 
-    public class Potion : Item
+    public class UtilityItem : Item
     {
-        public Potion(string name, string description, RarityEnum rarity, int value) : base(name, description, rarity) 
+        public UtilityItem(string name, string description, RarityEnum rarity, int value) : base(name, description, rarity) 
         {
             Value = value;
+            ItemType = ItemTypeEnum.Utility;
         }
 
         public override void DisplayInfo()
         {
-            Console.WriteLine($"{Name} is a potion of {Rarity} rarity. Description: {Description}");
+            Console.WriteLine($"{Name} is a UtilityItem of {Rarity} rarity. Description: {Description}");
         }
     }
 
-    public class Armor : Item
+    public class DefensiveItem : Item
     {
-        public Armor(string name, string description, RarityEnum rarity, int value) : base(name, description, rarity) 
+        public DefensiveItem(string name, string description, RarityEnum rarity, int value) : base(name, description, rarity) 
         {
             Value = value;
+            ItemType = ItemTypeEnum.Defensive;
         }
 
         public override void DisplayInfo()
         {
-            Console.WriteLine($"{Name} is a armor of {Rarity} rarity. Description: {Description}");
+            Console.WriteLine($"{Name} is a DefensiveItem of {Rarity} rarity. Description: {Description}");
         }
     }
 
@@ -73,5 +78,12 @@
     {
         Melee,
         Ranged
+    }
+
+    public enum ItemTypeEnum
+    {
+        Weapon,
+        Defensive,
+        Utility
     }
 }
